@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/template1.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="file:///C|/Users/Public/Documents/SherryWebsite/dreamweaver-template-3a/jquery.touchSwipe.min.js"></script>
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Settings</title>
+<!-- InstanceEndEditable -->
+
+
+
+<style type="text/css">
+@import url("style.css");
+body {
+	background-color: #F3F4EC;
+}
+</style>
+
+<script type="text/javascript">//<![CDATA[ 
+    $(window).load(function(){
+      $("[data-toggle]").click(function() {
+        var toggle_el = $(this).data("toggle");
+        $(toggle_el).toggleClass("open-sidebar");
+      });
+    });//]]>  
+    
+</script>
+
+</head>
+
+<body>
+<div class="container">
+      <div id="sidebar">
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="newgame2.html">Start Game</a></li>
+              <!-- <li><a href="../settings.html">Settings</a></li> !-->
+          </ul>
+      </div>
+  <div class="main-content">
+          <a href="#" data-toggle=".container" id="sidebar-toggle">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+          </a>
+          <div class="content">
+<!-- InstanceBeginEditable name="head" -->
+            <h1>SETTINGS</h1>
+              <p></p>
+              <form>
+              <fieldset>
+				<legend>Difficulty Level:</legend>
+				Easy:
+				<input type="radio" name="difficulty" value="easy">
+				<br>
+				Medium:
+				<input type="radio" name="difficulty" value="medium">
+                <br>
+				Hard:
+				<input type="radio" name="difficulty" value="hard">
+				<br><br>
+				</fieldset>
+                <br />
+                <fieldset>
+				<legend>Game Type:</legend>
+				AI vs AI:
+				<input type="radio" name="gametype" value="aiai">
+				<br>
+				AI vs Human:
+				<input type="radio" name="gametype" value="aihuman">
+				<br><br>
+				</fieldset>
+                <br /><br />
+                <input type="submit" value="Submit">
+              </form>
+              <!-- InstanceEndEditable -->
+    </div>
+  </div>
+  </div>
+
+</body>
+<!-- InstanceEnd --></html>
