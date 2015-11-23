@@ -37,6 +37,11 @@ io.on('connection', function(socket){
 		console.log("get_board_state request from app");
 	});
 	
+	socket.on('curr_board_state', function(msg){
+		io.emit('curr_board_state', msg);
+		console.log("curr_board_state from python");
+	});
+	
 	// this will be replaced by img processor
 	socket.on('aimoveend', function(){
 		//io.emit('aimove', msg);
