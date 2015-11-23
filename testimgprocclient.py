@@ -63,6 +63,7 @@ def run_image_processor_forboardstate():
     global robotmovecomplete
     
     '''
+    
     #x[0:3], y[0:3], image
     x, y, img= find_board2.board_lines('stamp1.jpg')
 
