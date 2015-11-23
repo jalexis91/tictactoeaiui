@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="file:///C|/Users/Public/Documents/SherryWebsite/dreamweaver-template-3a/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="file:///C:/Users/Alexis/Documents/ECEN 403/404ProjectApp/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="file:///C:/Users/Alexis/Documents/ECEN 403/404ProjectApp/async.js"></script>
 
 <!-- InstanceBeginEditable name="doctitle" -->
 <title>Game</title>
@@ -201,39 +202,7 @@ body {
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
-var socket = io('http://localhost');
 
-socket.on('aimove', function(msg){
-    //$('#messages').append($('<li>').text('AI Move: '+msg));
-	console.log(msg);
-  });
-  
-socket.on('usermove', function(msg){
-	startUserMove(msg);
-	//$('#messages').append($('<li>').text('User Move: '+msg));
-	console.log(msg);
-});
-
-// not really used anymore
-socket.on('game_reset', function(msg){
-	//startUserMove(msg);
-	//$('#messages').append($('<li>').text('User Move: '+msg));
-	init();
-	console.log(msg);
-});
-
-// check current board state to see if everything is ready for a new game to start
-socket.on('curr_board_state', function(msg){
-	if(msg == '1'){
-		init();
-	}
-	else if(msg == '0'){
-		alert("Please clear the game board then press \"START\"");
-	}
-	else{
-		alert("Please clear the game board then press \"START\"");
-	}
-});
   
 var level = 1;
 
@@ -269,6 +238,40 @@ var iswon = false;
 var lastfileupdatetime = new Date("2000-01-01T01:01:01.000Z").toISOString();
 var jsondata;
 
+var socket = io('http://localhost');
+
+socket.on('aimove', function(msg){
+    //$('#messages').append($('<li>').text('AI Move: '+msg));
+	console.log(msg);
+  });
+  
+socket.on('usermove', function(msg){
+	startUserMove(msg);
+	//$('#messages').append($('<li>').text('User Move: '+msg));
+	console.log(msg);
+});
+
+// not really used anymore
+socket.on('game_reset', function(msg){
+	//startUserMove(msg);
+	//$('#messages').append($('<li>').text('User Move: '+msg));
+	init();
+	console.log(msg);
+});
+
+// check current board state to see if everything is ready for a new game to start
+socket.on('curr_board_state', function(msg){
+	if(msg == '1'){
+		init();
+	}
+	else if(msg == '0'){
+		alert("Please clear the game board then press \"START\"");
+	}
+	else{
+		alert("Please clear the game board then press \"START\"");
+	}
+});
+
 // run when start button is clicked
 function gamestatecheck(){
 	console.log('send get_board_state request');
@@ -277,48 +280,74 @@ function gamestatecheck(){
 }
 
 function init() {
-    oktoplay=true;
-	waystowinpt(); //initialize winning states for point config
-	waystowinind(); //initialize winning states for index config
-	writetext(4);
-    nummovesmade = 0; //total number of moves made; increments by 1
-	//initialize moves matrix
-	moves[11]=0; 
-	moves[12]=0; 
-	moves[13]=0; 
-	moves[21]=0; 
-	moves[22]=0; 
-	moves[23]=0; 
-	moves[31]=0; 
-	moves[32]=0; 
-	moves[33]=0;
-	oldjsonmoves[11]=0; 
-	oldjsonmoves[12]=0; 
-	oldjsonmoves[13]=0; 
-	oldjsonmoves[21]=0; 
-	oldjsonmoves[22]=0; 
-	oldjsonmoves[23]=0; 
-	oldjsonmoves[31]=0; 
-	oldjsonmoves[32]=0; 
-	oldjsonmoves[33]=0;
-	jsonmoves[11]=0; 
-	jsonmoves[12]=0; 
-	jsonmoves[13]=0; 
-	jsonmoves[21]=0; 
-	jsonmoves[22]=0; 
-	jsonmoves[23]=0; 
-	jsonmoves[31]=0; 
-	jsonmoves[32]=0; 
-	jsonmoves[33]=0; 
-	lastfileupdatetime = new Date("2000-01-01T01:01:01.000Z").toISOString();
+	//async.series([
+		//function(callback){
+			oktoplay=true;
+			waystowinpt(); //initialize winning states for point config
+			waystowinind(); //initialize winning states for index config
+		//	callback(null, 'one');
+		//},
+		//function(callback){
+			writetext(4);
+		//	callback(null, 'two');
+		//},
+		//function(callback){
+			nummovesmade = 0; //total number of moves made; increments by 1
+			//initialize moves matrix
+			moves[11]=0; 
+			moves[12]=0; 
+			moves[13]=0; 
+			moves[21]=0; 
+			moves[22]=0; 
+			moves[23]=0; 
+			moves[31]=0; 
+			moves[32]=0; 
+			moves[33]=0;
+			oldjsonmoves[11]=0; 
+			oldjsonmoves[12]=0; 
+			oldjsonmoves[13]=0; 
+			oldjsonmoves[21]=0; 
+			oldjsonmoves[22]=0; 
+			oldjsonmoves[23]=0; 
+			oldjsonmoves[31]=0; 
+			oldjsonmoves[32]=0; 
+			oldjsonmoves[33]=0;
+			jsonmoves[11]=0; 
+			jsonmoves[12]=0; 
+			jsonmoves[13]=0; 
+			jsonmoves[21]=0; 
+			jsonmoves[22]=0; 
+			jsonmoves[23]=0; 
+			jsonmoves[31]=0; 
+			jsonmoves[32]=0; 
+			jsonmoves[33]=0; 
+			lastfileupdatetime = new Date("2000-01-01T01:01:01.000Z").toISOString();
+		//	callback(null, 'three');
+		//},
+		//function(callback){
+			resetboard();
+		//	callback(null, 'four');
+		//},
+		//function(callback){
+			if (!playerstarts) {
+				aistart();
+		//		callback(null, 'five1');
+			}
+			else{
+				socket.emit('getnewusermove',''); // asks for user input from console
+		//		callback(null, 'five2');
+			}
+		//}
+	//],
+	//function(err, results){
+	//	if(err){
+	//		console.log("error occurred in async");
+	//	}
+	//	else{
+	//		console.log(results);
+	//	}
+	//});
     
-	resetboard();
-    if (!playerstarts) {
-        aistart();
-    }
-	else{
-		socket.emit('getnewusermove',''); // asks for user input from console
-	}
 	//checkforFileUpdates();
 	//document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 	
@@ -357,66 +386,6 @@ function setbutton(move) {
 	}
 }
 
-function useJSONtogetMoves(txt){
-	jsondata = JSON.parse(txt);
-	if(jsondata.lastsaveISO > lastfileupdatetime){
-		console.log('last save check passed');
-		lastfileupdatetime = jsondata.lastsaveISO;//.toISOString(); // update last save time
-		if(jsondata.square1 == 0 && jsondata.square2 == 0 && jsondata.square3 == 0 && jsondata.square4 == 0 && jsondata.square5 == 0 && jsondata.square6 == 0 && jsondata.square7 == 0 && jsondata.square8 == 0 && jsondata.square9 == 0 && playerstarts){ // i.e. no move has been made yet
-			//skip
-		}
-		else if(jsondata.square1 == 0 && jsondata.square2 == 0 && jsondata.square3 == 0 && jsondata.square4 == 0 && jsondata.square5 == 0 && jsondata.square6 == 0 && jsondata.square7 == 0 && jsondata.square8 == 0 && jsondata.square9 == 0 && playerstarts){
-			// if ai starts and all jsondata is 0, the ai stuff hasn't finished running yet so we need to give it time
-		}
-		else{ // shouldn't hit the case where jsondata is all 0 and the ai starts
-			console.log('made it to else (i.e. knows theres a new move');
-			//copy the last json data we retrieved to the oldjsonmoves variable and copy the newest json data to jsonmoves var
-			oldjsonmoves[11]=jsonmoves[11]; 
-			oldjsonmoves[12]=jsonmoves[12]; 
-			oldjsonmoves[13]=jsonmoves[13]; 
-			oldjsonmoves[21]=jsonmoves[21]; 
-			oldjsonmoves[22]=jsonmoves[22]; 
-			oldjsonmoves[23]=jsonmoves[23]; 
-			oldjsonmoves[31]=jsonmoves[31]; 
-			oldjsonmoves[32]=jsonmoves[32]; 
-			oldjsonmoves[33]=jsonmoves[33];
-			jsonmoves[11]=jsondata.square1; 
-			jsonmoves[12]=jsondata.square2; 
-			jsonmoves[13]=jsondata.square3; 
-			jsonmoves[21]=jsondata.square4; 
-			jsonmoves[22]=jsondata.square5; 
-			jsonmoves[23]=jsondata.square6; 
-			jsonmoves[31]=jsondata.square7; 
-			jsonmoves[32]=jsondata.square8; 
-			jsonmoves[33]=jsondata.square9;
-			var tmpmovedat = 0;
-			var breakloop = false;
-			if(jsondata.lastmove == "human"){ // if the last move was made by the human player we need to update the screen and start ai calculations
-				console.log('looking for human moves');
-				for(var i=10;i<=30;i=i+10){
-					for(var j=1;j<=3;j++){
-						tmpmovedat = i+j;
-						// check if old move equals the newest move; if it doesn't then a new move was made in that space
-						// then check if the newest move was made by the human player (i.e. jsonmoves[tmpmovedat]==1)
-						// if its a human move then we use the setbutton function to start the human move stuff
-						if(oldjsonmoves[tmpmovedat]!=jsonmoves[tmpmovedat] && jsonmoves[tmpmovedat]==1){
-							console.log('setbutton yo');
-							setbutton(tmpmovedat);
-							breakloop=true;
-							break;
-						}
-					}
-					if(breakloop){
-						break;
-					}
-				}
-				breakloop=false;
-			}
-			//if last move was made by ai we can ignore bc we already know what the move was
-			// if neither human nor ai then no moves were made and we can skip	
-		}
-	}
-}
 // socket stuff works now kind of but the read text file stuff won't work when I use the sockets???
 function readTextFile(file)
 {
@@ -948,6 +917,7 @@ function randommove() { // make a random move; used for easy mode
 <!-- <h1>GAME</h1> -->
 <div id="board">
               
+
 
 <div id="board">
     <table cellpadding="0" cellspacing="0" style="width:90%;height:410px;padding-top:10px;">
